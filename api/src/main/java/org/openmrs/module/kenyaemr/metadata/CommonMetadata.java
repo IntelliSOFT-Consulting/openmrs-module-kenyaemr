@@ -9,6 +9,15 @@
  */
 package org.openmrs.module.kenyaemr.metadata;
 
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.form;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.globalProperty;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.patientIdentifierType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.personAttributeType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.relationshipType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.visitAttributeType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.visitType;
+
 import org.openmrs.PatientIdentifierType.LocationBehavior;
 import org.openmrs.PersonAttributeType;
 import org.openmrs.module.idgen.validator.LuhnMod25IdentifierValidator;
@@ -18,15 +27,6 @@ import org.openmrs.module.kenyaemr.datatype.FormDatatype;
 import org.openmrs.module.kenyaemr.datatype.LocationDatatype;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.springframework.stereotype.Component;
-
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.form;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.globalProperty;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.patientIdentifierType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.personAttributeType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.relationshipType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.visitAttributeType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.visitType;
 
 /**
  * Common metadata bundle
@@ -132,6 +132,11 @@ public class CommonMetadata extends AbstractMetadataBundle {
 
 	public static final class _VisitType {
 		public static final String OUTPATIENT = "3371a4d4-f66f-4454-a86d-92c7b3da990c";
+	}
+	
+	public static final class _Program {
+		public static final String COVID_19_CASE_INVESTIGATION = "e7ee7548-6958-4361-bed9-ee2614423947";
+		public static final String COVID_19_QUARANTINE = "9a5d555e-739a-11ea-bc55-0242ac130003";
 	}
 
 	/**
