@@ -37,6 +37,7 @@ public class EmrConstants {
 	public static final String APP_DEFAULTER_TRACING = MODULE_ID + ".defaultertracing";
 	public static final String APP_HIV_TESTING = MODULE_ID + ".hivtesting";
 	public static final String APP_PREP = MODULE_ID + ".prep";
+	public static final String APP_CROSSBORDER = MODULE_ID + ".crossborder";
 
 	/**
 	 * Global property names

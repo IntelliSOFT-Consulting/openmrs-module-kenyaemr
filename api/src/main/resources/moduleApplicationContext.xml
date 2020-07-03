@@ -83,6 +83,14 @@
 		<constructor-arg value="400" />
 	</bean>
 
+	<bean id="kenyaemr.app.crossborder" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
+		<constructor-arg value="kenyaemr.crossborder" />
+		<constructor-arg value="Cross border" />
+		<constructor-arg value="kenyaemr/crossborder/crossborderHome.page" />
+		<constructor-arg value="kenyaui:apps/crossborder.png" />
+		<constructor-arg value="401" />
+	</bean>
+
 	<bean id="kenyaemr.app.reports" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
 		<constructor-arg value="kenyaemr.reports" />
 		<constructor-arg value="Reports" />

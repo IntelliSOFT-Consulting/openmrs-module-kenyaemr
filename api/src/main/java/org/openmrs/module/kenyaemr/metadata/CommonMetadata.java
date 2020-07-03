@@ -9,6 +9,15 @@
  */
 package org.openmrs.module.kenyaemr.metadata;
 
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.form;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.globalProperty;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.patientIdentifierType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.personAttributeType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.relationshipType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.visitAttributeType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.visitType;
+
 import org.openmrs.PatientIdentifierType.LocationBehavior;
 import org.openmrs.PersonAttributeType;
 import org.openmrs.module.idgen.validator.LuhnMod25IdentifierValidator;
@@ -18,15 +27,6 @@ import org.openmrs.module.kenyaemr.datatype.FormDatatype;
 import org.openmrs.module.kenyaemr.datatype.LocationDatatype;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.springframework.stereotype.Component;
-
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.form;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.globalProperty;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.patientIdentifierType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.personAttributeType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.relationshipType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.visitAttributeType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.visitType;
 
 /**
  * Common metadata bundle
@@ -41,6 +41,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		public static final String TRIAGE = "d1059fb9-a079-4feb-a749-eedd709ae542";
 		public static final String HTS = "9c0a7a57-62ff-4f75-babe-5835b0e921b7";
 		public static final String DRUG_REGIMEN_EDITOR = "7dffc392-13e7-11e9-ab14-d663bd873d93";
+		public static final String CROSS_BORDER = "489b11ef-7ebf-4a38-8141-de4c084bca26";
 	}
 
 	public static final class _Form {
@@ -59,6 +60,8 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		public static final String DRUG_REGIMEN_EDITOR = "da687480-e197-11e8-9f32-f2801f1b9fd1";
 		public static final String HTS_CLIENT_TRACING = "15ed03d2-c972-11e9-a32f-2a2ae2dbcce4";
 		public static final String HTS_REFERRAL = "9284828e-ce55-11e9-a32f-2a2ae2dbcce4";
+		public static final String MOBILITY_SCREENING = "95ab6ce7-01ea-4a14-af12-fe4eada31081";
+		public static final String INTERFACILITY_REFERRAL = "ec42630e-ac96-45c9-877e-f412793a582f";
 	}
 
 	public static final class _OrderType {
@@ -118,6 +121,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		install(encounterType("Triage", "Collection of limited data prior to a more thorough examination", _EncounterType.TRIAGE));
 		install(encounterType("HTS", "HTS Services", _EncounterType.HTS));
 		install(encounterType("Drug Regimen Editor", "Handles patient regimen events", _EncounterType.DRUG_REGIMEN_EDITOR));
+		install(encounterType("Cross border", "Handles data for cross border related activities", _EncounterType.CROSS_BORDER));
 
 		install(form("Clinical Encounter", null, _EncounterType.CONSULTATION, "1", _Form.CLINICAL_ENCOUNTER));
 		install(form("Lab Results", null, _EncounterType.LAB_RESULTS, "1", _Form.LAB_RESULTS));
@@ -134,6 +138,8 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		install(form("Drug Regimen Editor", null, _EncounterType.DRUG_REGIMEN_EDITOR, "1", _Form.DRUG_REGIMEN_EDITOR));
 		install(form("HTS Client Tracing Form", "Form for tracing hts clients", _EncounterType.HTS, "1", _Form.HTS_CLIENT_TRACING));
 		install(form("HTS Client Referral Form", "Form for HTS linkage referral", _EncounterType.HTS, "1", _Form.HTS_REFERRAL));
+		install(form("Mobility Screening form", "Form for mobility screening to determine who the cross border populations are.", _EncounterType.CROSS_BORDER, "1", _Form.MOBILITY_SCREENING));
+		install(form("Interfacility referral form", "Form for capturing inter-facility referral data", _EncounterType.CROSS_BORDER, "1", _Form.INTERFACILITY_REFERRAL));
 
 
 
