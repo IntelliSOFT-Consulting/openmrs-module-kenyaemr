@@ -70,7 +70,7 @@
         <uiframeworkVersion>3.15.0</uiframeworkVersion>
         <reportingcompatibilityVersion>2.0.4</reportingcompatibilityVersion>
         <legacyUiVersion>1.5.0</legacyUiVersion>
-        <registrationCoreVersion>1.7.1</registrationCoreVersion>
+        <registrationCoreVersion>1.10.0-SNAPSHOT</registrationCoreVersion>
         <xdsSender>1.1.0-SNAPSHOT</xdsSender>
         <!--
         <kenyaemrChartsVersion>1.0</kenyaemrChartsVersion>

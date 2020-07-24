@@ -94,7 +94,7 @@ kenyaemrApp.controller('PatientSearchResults', ['$scope', '$http', function($sco
 	$scope.onResultClick = function(patient) {
 		ui.navigate($scope.pageProvider, $scope.page, { patientId: patient.id });
 	};
-
+	
 }]);
 
 /**
@@ -123,7 +123,11 @@ kenyaemrApp.controller('SimilarPatients', ['$scope', '$http', function($scope, $
 	 */
 	$scope.refresh = function() {
 		var query = $scope.givenName + ' ' + $scope.familyName;
-		$http.get(ui.fragmentActionLink('kenyaemr', 'search', 'patients', { appId: $scope.appId, q: query, which: 'all' })).
+		var data = $.param({
+			givenName: $scope.givenName,
+			familyName: $scope.familyName
+		})
+		$http.post(ui.fragmentActionLink('kenyaemr', 'matchingPatients', 'getSimilarPatients', { appId: $scope.appId }), data, { headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'} } ).
 			success(function(data) {
 				$scope.results = data;
 			});
@@ -137,6 +141,43 @@ kenyaemrApp.controller('SimilarPatients', ['$scope', '$http', function($scope, $
 		ui.navigate($scope.pageProvider, $scope.page, { patientId: patient.id });
 	};
 
+	/**
+	 * MPI Import event handler
+	 * @param 
+	 */
+	$scope.onMpiImportClick = function($event, patient) {
+	    $event.stopPropagation();
+	    $event.preventDefault();	    
+	    
+		if (confirm('Are you sure you want to import this patient?')) {
+			let id = patient.uuid
+
+            for (var i = 0; i < patient.identifiers.length; i += 1) {
+                identifier = patient.identifiers[i];
+                if (identifier.name === 'GODS Number') {
+                    id = identifier.value;
+                    break;
+                }
+            }
+						
+		    $http.jsonp(ui.fragmentActionLink("kenyaemr", "registerPatient", "importMpiPatient", {mpiPersonId: id}))
+	        .success(function (response) {
+	        	ui.navigate('kenyaemr', 'registration/registrationViewPatient', { patientId: response.message });
+	        	
+				alert('imported sucessfully');
+//	            var link = patientDashboardLink;
+//	            link += (link.indexOf('?') == -1 ? '?' : '&') + 'patientId=' + response.message + '&appId=' + appId;
+//	            location.href = link;
+
+	        })
+	        .error(function (data, status, headers, config) {
+	            alert('AJAX error ' + data);
+	            console.log(data);
+	        });
+		    
+		}
+	}
+	
 }]);
 
 /**

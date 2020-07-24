@@ -67,6 +67,7 @@
 				<ref bean="kenyaemr.hiv.report.tx_curr_linelist_quarterly" />
 				<ref bean="kenyaemr.hiv.report.pendingVLAndCD4Report"/>
 				<ref bean="kenyaemr.hiv.report.cccDefaulterTracingRegister"/>
+				<ref bean="kenyaemr.etl.common.report.crossborder" />
 			</set>
 		</property>
 	</bean>
@@ -455,6 +456,17 @@
 				<ref bean="kenyaemr.app.reports" />
 			</set></property>
 		<property name="template" value="kenyaemr:Datim_Template.xls" />
+	</bean>
+	<!-- Cross border indicator report-->
+	<bean id="kenyaemr.etl.common.report.crossborder" class="org.openmrs.module.kenyacore.report.IndicatorReportDescriptor">
+		<property name="targetUuid" value="9f8bdcac-f03f-41ef-ab7e-89490365cf52" />
+		<property name="name" value="Crossborder Indicator Report" />
+		<property name="description" value="Crossborder Indicator Report" />
+		<property name="apps">
+			<set>
+				<ref bean="kenyaemr.app.reports" />
+			</set></property>
+		<property name="template" value="kenyaemr:CB_indicators_template.xls" />
 	</bean>
 	<bean id="kenyaemr.hiv.report.htsRegister" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
 		<property name="targetUuid" value="c759e8da-d82d-41e3-88ee-c5e65ee6c9f6" />
