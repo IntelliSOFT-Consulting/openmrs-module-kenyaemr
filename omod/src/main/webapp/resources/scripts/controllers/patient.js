@@ -104,6 +104,8 @@ kenyaemrApp.controller('SimilarPatients', ['$scope', '$http', function($scope, $
 
 	$scope.givenName = '';
 	$scope.familyName = '';
+	$scope.birthdate = '';
+	$scope.gender = '';
 	$scope.results = [];
 
 	/**
@@ -122,10 +124,11 @@ kenyaemrApp.controller('SimilarPatients', ['$scope', '$http', function($scope, $
 	 * Refreshes the patient search
 	 */
 	$scope.refresh = function() {
-		var query = $scope.givenName + ' ' + $scope.familyName;
 		var data = $.param({
 			givenName: $scope.givenName,
-			familyName: $scope.familyName
+			familyName: $scope.familyName,
+			birthdate: $scope.birthdate,
+			gender: $scope.gender
 		})
 		$http.post(ui.fragmentActionLink('kenyaemr', 'matchingPatients', 'getSimilarPatients', { appId: $scope.appId }), data, { headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'} } ).
 			success(function(data) {
@@ -160,7 +163,7 @@ kenyaemrApp.controller('SimilarPatients', ['$scope', '$http', function($scope, $
                 }
             }
 						
-		    $http.jsonp(ui.fragmentActionLink("kenyaemr", "registerPatient", "importMpiPatient", {mpiPersonId: id}))
+		    $.getJSON(ui.fragmentActionLink("kenyaemr", "registerPatient", "importMpiPatient", {mpiPersonId: id}))
 	        .success(function (response) {
 	        	ui.navigate('kenyaemr', 'registration/registrationViewPatient', { patientId: response.message });
 	        	
@@ -170,9 +173,9 @@ kenyaemrApp.controller('SimilarPatients', ['$scope', '$http', function($scope, $
 //	            location.href = link;
 
 	        })
-	        .error(function (data, status, headers, config) {
-	            alert('AJAX error ' + data);
-	            console.log(data);
+	       .error(function (xhr, status, err) {
+	            alert('Unable to import patient because record already exists');
+	            console.log(xhr.responseText);
 	        });
 		    
 		}
