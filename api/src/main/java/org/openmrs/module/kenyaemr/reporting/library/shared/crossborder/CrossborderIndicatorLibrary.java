@@ -1068,7 +1068,7 @@ public class CrossborderIndicatorLibrary {
 
 	public CohortIndicator receivedHivTestResults() {
 		return cohortIndicator("TXT-HTS: # of individuals who received HIV testing services (HTS) and received their test results, disaggregated by HIV result",
-			map(crossborderCohorts.receivedHivTestResults(), "onOrAfter=${startDate},onOrBefore=${endDate}")
+			map(crossborderCohorts.cbReceivedHivTestResults(), "onOrAfter=${startDate},onOrBefore=${endDate}")
 		);
 	}
 
