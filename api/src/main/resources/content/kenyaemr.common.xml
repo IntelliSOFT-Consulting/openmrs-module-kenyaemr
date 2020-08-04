@@ -37,6 +37,9 @@
 				<!--<ref bean="prep.prep.form.behaviorRiskAssessment"/>-->
 				<ref bean="kenyaemr.crossborder.form.mobilityScreening"/>
 				<ref bean="kenyaemr.crossborder.form.interfacilityReferral"/>
+				<!--<ref bean="kenyaemr.common.form.referralAndLinkage"/>-->
+				<ref bean="prep.prep.form.behaviorRiskAssessment"/>
+				<ref bean="kenyaemr_hiv_testing.common.form.htsScreeningForm"/>
 			</set>
 		</property>
 	</bean>
@@ -154,7 +157,7 @@
 				<ref bean="kenyaemr.app.clinician" />
 				<ref bean="kenyaemr.app.chart" />
 				<ref bean="kenyaemr.app.hts" />
-				<!--<ref bean="kenyaemr.app.prep" />-->
+				<ref bean="kenyaemr.app.prep" />
 			</set>
 		</property>
 		<property name="icon" value="kenyaui:forms/generic.png" />
@@ -275,7 +278,7 @@
 				<ref bean="kenyaemr.app.clinician" />
 				<ref bean="kenyaemr.app.chart" />
 				<ref bean="kenyaemr.app.hts" />
-				<!--<ref bean="kenyaemr.app.prep" />-->
+				<ref bean="kenyaemr.app.prep" />
 			</set>
 		</property>
 		<property name="showIfCalculation" value="org.openmrs.module.kenyaemr.calculation.library.hiv.hts.PatientsEligibleForHtsInitialTestCalculation" />
@@ -293,7 +296,7 @@
 				<ref bean="kenyaemr.app.clinician" />
 				<ref bean="kenyaemr.app.chart" />
 				<ref bean="kenyaemr.app.hts" />
-				<!--<ref bean="kenyaemr.app.prep" />-->
+				<ref bean="kenyaemr.app.prep" />
 			</set>
 		</property>
 		<property name="showIfCalculation" value="org.openmrs.module.kenyaemr.calculation.library.hiv.hts.PatientsEligibleForHtsRetestCalculation" />
@@ -312,6 +315,7 @@
 				<ref bean="kenyaemr.app.chart" />
 				<ref bean="kenyaemr.app.hts" />
 				<ref bean="kenyaemr.app.defaultertracing" />
+				<ref bean="kenyaemr.app.prep" />
 			</set>
 		</property>
 		<property name="showIfCalculation" value="org.openmrs.module.kenyaemr.calculation.library.hiv.hts.PatientsEligibleForHtsLinkageAndReferralCalculation" />
@@ -333,6 +337,41 @@
 		<property name="htmlform" value="kenyaemr:hts/htsClientTracing.html" />
 		<property name="order" value="201003" />
 	</bean>
+	<!-- Prep behavior risk assessment form -->
+	<bean id="prep.prep.form.behaviorRiskAssessment" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+		<property name="targetUuid" value="40374909-05fc-4af8-b789-ed9c394ac785" />
+		<property name="apps">
+			<set>
+				<ref bean="kenyaemr.app.registration"/>
+				<ref bean="kenyaemr.app.intake"/>
+				<ref bean="kenyaemr.app.chart" />
+				<ref bean="kenyaemr.app.prep" />
+			</set>
+		</property>
+		<property name="showIfCalculation" value="org.openmrs.module.kenyaemr.calculation.library.hiv.HIVNegativePatientsCalculation" />
+		<property name="icon" value="kenyaui:forms/generic.png" />
+		<property name="htmlform" value="prep:prep/behaviorRiskAssessment.html" />
+	</bean>
+
+	<!-- HTS screening form -->
+	<bean id="kenyaemr_hiv_testing.common.form.htsScreeningForm" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+		<property name="targetUuid" value="04295648-7606-11e8-adc0-fa7ae01bbebc" />
+		<property name="apps">
+			<set>
+				<ref bean="kenyaemr.app.registration" />
+				<ref bean="kenyaemr.app.clinician" />
+				<ref bean="kenyaemr.app.chart" />
+				<ref bean="kenyaemr.app.hts" />
+				<ref bean="kenyaemr.app.prep" />
+			</set>
+		</property>
+		<property name="showIfCalculation" value="org.openmrs.module.kenyaemr.calculation.library.hiv.hts.PatientsEligibleForHtsScreeningCalculation" />
+		<property name="icon" value="kenyaui:forms/generic.png" />
+		<property name="htmlform" value="hivtestingservices:hts/htsscreeningform.html" />
+		<property name="order" value="200011" />
+	</bean>
+
+	<!-- ===================== Reports ===================== -->
 
 	<!-- HTS Client Referral form -->
 	<bean id="kenyaemr.common.form.htsReferral" class="org.openmrs.module.kenyacore.form.FormDescriptor">
@@ -346,38 +385,6 @@
 		<property name="icon" value="kenyaui:forms/generic.png" />
 		<property name="htmlform" value="kenyaemr:hts/htsReferral.html" />
 		<property name="order" value="201004" />
-	</bean>
-
-	<!-- Prep behavior risk assessment form -->
-	<!--<bean id="prep.prep.form.behaviorRiskAssessment" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-		<property name="targetUuid" value="40374909-05fc-4af8-b789-ed9c394ac785" />
-		<property name="apps">
-			<set>
-				<ref bean="kenyaemr.app.registration"/>
-				<ref bean="kenyaemr.app.intake"/>
-				<ref bean="kenyaemr.app.chart" />
-				<ref bean="kenyaemr.app.prep" />
-			</set>
-		</property>
-		<property name="icon" value="kenyaui:forms/generic.png" />
-		<property name="htmlform" value="prep:prep/behaviorRiskAssessment.html" />
-	</bean>-->
-
-	<!-- HTS screening form -->
-	<bean id="kenyaemr_hiv_testing.common.form.htsScreeningForm" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-		<property name="targetUuid" value="04295648-7606-11e8-adc0-fa7ae01bbebc" />
-		<property name="apps">
-			<set>
-				<ref bean="kenyaemr.app.registration" />
-				<ref bean="kenyaemr.app.clinician" />
-				<ref bean="kenyaemr.app.chart" />
-				<ref bean="kenyaemr.app.hts" />
-			</set>
-		</property>
-		<property name="showIfCalculation" value="org.openmrs.module.kenyaemr.calculation.library.hiv.hts.PatientsEligibleForHtsScreeningCalculation" />
-		<property name="icon" value="kenyaui:forms/generic.png" />
-		<property name="htmlform" value="hivtestingservices:hts/htsscreeningform.html" />
-		<property name="order" value="200055" />
 	</bean>
 
 	<!-- Cross border forms -->
@@ -445,6 +452,9 @@
 		<!--<property name="template" value="kenyaemr:moh731_greencard_template.xls" />-->
 		<property name="template" value="kenyaemr:moh731.xls" />
 	</bean>
+
+
+
 
 	<!-- Datim report-->
 	<bean id="kenyaemr.etl.common.report.datim" class="org.openmrs.module.kenyacore.report.IndicatorReportDescriptor">
@@ -571,29 +581,26 @@
 		</property>
 	</bean>
 	<!--Additionals fpr 15.1 release-->
-	<bean id="kenyaemr.common.report.clients.transferred.out" class="org.openmrs.module.kenyacore.report.CalculationReportDescriptor">
+	<bean id="kenyaemr.common.report.clients.transferred.out" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
 		<property name="targetUuid" value="fe5da2d2-7ecd-11e5-a6be-10c37b209c79" />
 		<property name="name" value="Clients transferred out" />
 		<property name="description" value="Patients who have been moved to other facilities" />
-		<property name="calculation" value="org.openmrs.module.kenyaemr.calculation.library.hiv.art.IsTransferOutCalculation" />
 		<property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
 
 	</bean>
 
-	<bean id="kenyaemr.common.report.clients.transferred.in" class="org.openmrs.module.kenyacore.report.CalculationReportDescriptor">
+	<bean id="kenyaemr.common.report.clients.transferred.in" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
 		<property name="targetUuid" value="176edbce-7ece-11e5-a7d9-10c37b209c79" />
 		<property name="name" value="Clients transferred in" />
 		<property name="description" value="Patients who came in from other facilities" />
-		<property name="calculation" value="org.openmrs.module.kenyaemr.calculation.library.hiv.art.IsTransferInCalculation" />
 		<property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
 
 	</bean>
 
-	<bean id="kenyaemr.common.report.clients.died" class="org.openmrs.module.kenyacore.report.CalculationReportDescriptor">
+	<bean id="kenyaemr.common.report.clients.died" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
 		<property name="targetUuid" value="d4c6805e-7ecf-11e5-8b43-10c37b209c79" />
 		<property name="name" value="Clients died" />
 		<property name="description" value="Patients who have died" />
-		<property name="calculation" value="org.openmrs.module.kenyaemr.calculation.library.DeceasedPatientsCalculation" />
 		<property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
 
 	</bean>
@@ -666,5 +673,7 @@
 		<property name="template" value="kenyaemr:active_on_art_linelist.xls" />
 		<property name="repeatingSection" value="sheet:1,row:6,dataset:activePatients" />
 	</bean>
+	
+
 
 </beans>
